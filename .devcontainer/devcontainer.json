@@ -1,0 +1,21 @@
+{
+  "name": "PGE323M scratch",
+  "image": "mcr.microsoft.com/devcontainers/miniconda:0-3",
+  "remoteUser": "vscode",
+  "remoteEnv": {
+    "PATH": "/home/vscode/.conda/envs/scratch/bin:${containerEnv:PATH}"
+  },
+  "postCreateCommand": "bash .devcontainer/setup.sh",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "GitHub.copilot",
+        "GitHub.copilot-chat"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/home/vscode/.conda/envs/scratch/bin/python"
+      }
+    }
+  }
+}
