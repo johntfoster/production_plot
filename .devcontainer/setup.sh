@@ -8,6 +8,12 @@ if [[ ! -x "$environment/bin/python" ]]; then
         --override-channels --channel conda-forge python=3.11 pip
 fi
 
+# Reproduce recorded dependencies (see requirements.txt) on every rebuild.
+repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+if [[ -f "$repo_root/requirements.txt" ]]; then
+    "$environment/bin/python" -m pip install --requirement "$repo_root/requirements.txt"
+fi
+
 # Interactive terminals and noninteractive agent commands use the same Python.
 activation='source /opt/conda/etc/profile.d/conda.sh && conda activate "$HOME/.conda/envs/scratch"'
 touch "$HOME/.bashrc"
